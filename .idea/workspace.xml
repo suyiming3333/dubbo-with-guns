@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="742f12ad-a627-4c79-982b-f104afed299e" name="Default Changelist" comment="" />
+    <list default="true" id="742f12ad-a627-4c79-982b-f104afed299e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guns-core/guns-core.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/guns-core/pom.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pom.xml" root0="SKIP_INSPECTION" />
   </component>
   <component name="MavenImportPreferences">
@@ -20,18 +31,29 @@
     </option>
   </component>
   <component name="ProjectId" id="1ggO5xaBSOC48xUcZs7JpjidGge" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/guns-core" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\gitCode\dubbo-with-guns\guns-core" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -43,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598532589839</updated>
-      <workItem from="1598532593653" duration="998000" />
+      <workItem from="1598532593653" duration="2108000" />
     </task>
     <servers />
   </component>
@@ -51,25 +73,29 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="189" key="GridCell.Tab.0.bottom" timestamp="1598533643842">
+    <state width="1238" height="189" key="GridCell.Tab.0.bottom" timestamp="1598533947505">
       <screen x="0" y="0" width="1280" height="770" />
     </state>
-    <state width="1238" height="189" key="GridCell.Tab.0.bottom/0.0.1280.770@0.0.1280.770" timestamp="1598533643842" />
-    <state width="1238" height="189" key="GridCell.Tab.0.center" timestamp="1598533643841">
+    <state width="1238" height="189" key="GridCell.Tab.0.bottom/0.0.1280.770@0.0.1280.770" timestamp="1598533947505" />
+    <state width="1238" height="189" key="GridCell.Tab.0.center" timestamp="1598533947501">
       <screen x="0" y="0" width="1280" height="770" />
     </state>
-    <state width="1238" height="189" key="GridCell.Tab.0.center/0.0.1280.770@0.0.1280.770" timestamp="1598533643841" />
-    <state width="1238" height="189" key="GridCell.Tab.0.left" timestamp="1598533643841">
+    <state width="1238" height="189" key="GridCell.Tab.0.center/0.0.1280.770@0.0.1280.770" timestamp="1598533947501" />
+    <state width="1238" height="189" key="GridCell.Tab.0.left" timestamp="1598533947497">
       <screen x="0" y="0" width="1280" height="770" />
     </state>
-    <state width="1238" height="189" key="GridCell.Tab.0.left/0.0.1280.770@0.0.1280.770" timestamp="1598533643841" />
-    <state width="1238" height="189" key="GridCell.Tab.0.right" timestamp="1598533643842">
+    <state width="1238" height="189" key="GridCell.Tab.0.left/0.0.1280.770@0.0.1280.770" timestamp="1598533947497" />
+    <state width="1238" height="189" key="GridCell.Tab.0.right" timestamp="1598533947504">
       <screen x="0" y="0" width="1280" height="770" />
     </state>
-    <state width="1238" height="189" key="GridCell.Tab.0.right/0.0.1280.770@0.0.1280.770" timestamp="1598533643842" />
+    <state width="1238" height="189" key="GridCell.Tab.0.right/0.0.1280.770@0.0.1280.770" timestamp="1598533947504" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1598532657050">
       <screen x="0" y="0" width="1280" height="770" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.770@0.0.1280.770" timestamp="1598532657050" />
+    <state x="6" y="90" key="new project wizard" timestamp="1598533928978">
+      <screen x="0" y="0" width="1280" height="770" />
+    </state>
+    <state x="6" y="90" key="new project wizard/0.0.1280.770@0.0.1280.770" timestamp="1598533928978" />
   </component>
 </project>
