@@ -9,6 +9,8 @@
     <modules>
         <module>guns-core</module>
         <module>guns-restful</module>
+        <module>guns-admin</module>
+        <module>guns-generator</module>
     </modules>
 
     <name>dubbo-with-guns</name>
@@ -61,7 +63,7 @@
 <!--        <scope>import</scope>-->
 <!--      </dependency>-->
       <dependency>
-        <groupId>com.stylefeng</groupId>
+        <groupId>com.corn</groupId>
         <artifactId>guns-generator</artifactId>
         <version>${guns.version}</version>
       </dependency>
@@ -70,11 +72,11 @@
         <artifactId>guns-core</artifactId>
         <version>${guns.version}</version>
       </dependency>
-      <dependency>
-        <groupId>com.stylefeng</groupId>
-        <artifactId>guns-api</artifactId>
-        <version>${guns.version}</version>
-      </dependency>
+<!--      <dependency>-->
+<!--        <groupId>com.corn</groupId>-->
+<!--        <artifactId>guns-api</artifactId>-->
+<!--        <version>${guns.version}</version>-->
+<!--      </dependency>-->
       <dependency>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatisplus-spring-boot-starter</artifactId>

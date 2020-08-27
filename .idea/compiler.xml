@@ -6,14 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="guns-admin" />
         <module name="guns-core" />
         <module name="guns-restful" />
+        <module name="guns-generator" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="guns-admin" options="-parameters" />
       <module name="guns-core" options="-parameters" />
+      <module name="guns-generator" options="-parameters" />
       <module name="guns-restful" options="-parameters" />
     </option>
   </component>
