@@ -14,7 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @Reference(interfaceClass = UserAPI.class,check = false)
+    /***
+     * rpc调用userAPI相关接口
+     * check = true 开启服务启动检查
+     * cluster:failover 失败自动切换，当出现失败，重试其它服务器 [1]。通常用于读操作，但重试会带来更长延迟
+     * url = "dubbo://localhost:20881" 直连提供者，点对点测试
+     */
+    @Reference(interfaceClass = UserAPI.class
+            , check = true,cluster = "failover"
+            , retries = 3
+//            , url = "dubbo://localhost:20881"
+    )
     private UserAPI userAPI;
 
 

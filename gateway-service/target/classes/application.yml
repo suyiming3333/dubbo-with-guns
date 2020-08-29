@@ -33,6 +33,9 @@ spring:
   dubbo:
     server: true
     registry: zookeeper://localhost:2181
+    #关闭所有服务的启动时检查 (没有提供者时报错)
+    consumer:
+      check: true
   datasource:
       url: jdbc:mysql://127.0.0.1:3306/guns_rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
       username: root

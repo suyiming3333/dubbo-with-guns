@@ -22,7 +22,7 @@ public class AuthController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @Reference(interfaceClass = UserAPI.class,check = false)
+    @Reference(interfaceClass = UserAPI.class,check = true)
     private UserAPI userAPI;
 
     @RequestMapping(value = "${jwt.auth-path}")
