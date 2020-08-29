@@ -11,6 +11,9 @@
         <module>guns-restful</module>
         <module>guns-admin</module>
         <module>guns-generator</module>
+        <module>api-service</module>
+        <module>gateway-service</module>
+        <module>user-service</module>
     </modules>
 
     <name>dubbo-with-guns</name>
