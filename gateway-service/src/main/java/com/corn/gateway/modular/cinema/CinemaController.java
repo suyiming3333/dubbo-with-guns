@@ -20,6 +20,10 @@ import java.util.List;
 @RequestMapping("/cinema/")
 public class CinemaController {
 
+    /**
+     * cache = lru dubbo结果缓存，threadlocal
+     * connections 连接数限制(consumer provider 都可以去配置连接数限制)
+     */
     @Reference(interfaceClass = CinemaServiceAPI.class,
                     connections = 10,cache = "lru",check = false)
     private CinemaServiceAPI cinemaServiceAPI;
