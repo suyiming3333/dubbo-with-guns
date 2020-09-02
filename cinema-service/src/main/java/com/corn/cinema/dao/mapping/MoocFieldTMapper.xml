@@ -84,4 +84,18 @@
           AND f.`UUID` = ${fieldId}
     </select>
 
+<!--    <select id="getBaseFiledInfo4Order">-->
+<!--        SELECT-->
+<!--          h.`film_name` AS filmName,-->
+<!--          CONCAT(DATE_FORMAT(SYSDATE(),'%y年%m月%d日'),' ',f.`begin_time`) AS fieldTime,-->
+<!--          c.`cinema_name` AS cinemaName-->
+<!--        FROM-->
+<!--          mooc_field_t f,-->
+<!--          mooc_hall_film_info_t h,-->
+<!--          mooc_cinema_t c-->
+<!--        WHERE 1 = c.`UUID`-->
+<!--          AND 1 = f.`UUID`-->
+<!--          AND 2 = h.`film_id`-->
+<!--    </select>-->
+
 </mapper>

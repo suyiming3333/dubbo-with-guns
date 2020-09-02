@@ -29,6 +29,50 @@ public class MoocOrderT extends Model<MoocOrderT> {
      */
     @TableField("cinema_id")
     private Integer cinemaId;
+
+    public String getCinemaName() {
+        return cinemaName;
+    }
+
+    public void setCinemaName(String cinemaName) {
+        this.cinemaName = cinemaName;
+    }
+
+    public String getFilmName() {
+        return filmName;
+    }
+
+    public void setFilmName(String filmName) {
+        this.filmName = filmName;
+    }
+
+    public String getFiledName() {
+        return filedName;
+    }
+
+    public void setFiledName(String filedName) {
+        this.filedName = filedName;
+    }
+
+    /**
+     * 影院名称
+     */
+    @TableField("cinema_name")
+    private String cinemaName;
+
+    /**
+     * 电影名称
+     */
+    @TableField("film_name")
+    private String filmName;
+
+    /**
+     * 场次名称
+     */
+    @TableField("filed_name")
+    private String filedName;
+
+
     /**
      * 放映场次编号
      */
@@ -74,6 +118,28 @@ public class MoocOrderT extends Model<MoocOrderT> {
      */
     @TableField("order_status")
     private Integer orderStatus;
+
+    public Date getFilmStartTime() {
+        return filmStartTime;
+    }
+
+    public void setFilmStartTime(Date filmStartTime) {
+        this.filmStartTime = filmStartTime;
+    }
+
+    public Date getFilmEndTime() {
+        return filmEndTime;
+    }
+
+    public void setFilmEndTime(Date filmEndTime) {
+        this.filmEndTime = filmEndTime;
+    }
+
+    @TableField("film_start_time")
+    private Date filmStartTime;
+
+    @TableField("film_end_time")
+    private Date filmEndTime;
 
 
     public String getUuid() {
@@ -183,6 +249,11 @@ public class MoocOrderT extends Model<MoocOrderT> {
         ", orderTime=" + orderTime +
         ", orderUser=" + orderUser +
         ", orderStatus=" + orderStatus +
-        "}";
+        ", filmStartTime=" + filmStartTime +
+        ", filmEndTime=" + filmEndTime +
+        ", filedName=" + filedName +
+                ", filmName=" + filmName +
+                ", cinemaName=" + cinemaName +
+                "}";
     }
 }

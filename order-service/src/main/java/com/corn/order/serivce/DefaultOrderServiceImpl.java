@@ -79,7 +79,7 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
 
         EntityWrapper entityWrapper = new EntityWrapper();
         entityWrapper.eq("field_id",fieldId);
-
+        //获取有效order里预定的座位
         List<MoocOrderT> list = moocOrderTMapper.selectList(entityWrapper);
         String[] seatArrs = seats.split(",");
         // 有任何一个编号匹配上，则直接返回失败
@@ -165,6 +165,13 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
             log.error("订单查询业务失败，用户编号未传入");
             return null;
         }else{
+            /**
+             * Table 'guns_order.mooc_field_t' doesn't exist
+             * 由于每个服务对应各自数据库，因此不能直接链表查询
+             * 解决方法：
+             * 1、电影场次信息如开始时间、结束时间冗余到订单表(优先考虑)
+             * 2、调用cinemaapi获取所有场次信息然后组装
+             */
             List<OrderVO> ordersByUserId = moocOrderTMapper.getOrdersByUserId(userId,page);
             if(ordersByUserId==null && ordersByUserId.size()==0){
                 result.setTotal(0);

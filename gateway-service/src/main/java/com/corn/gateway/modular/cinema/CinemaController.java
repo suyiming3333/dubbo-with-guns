@@ -7,6 +7,7 @@ import com.corn.cinema.CinemaServiceAPI;
 import com.corn.cinema.vo.*;
 import com.corn.gateway.modular.cinema.vo.*;
 import com.corn.gateway.modular.vo.ResponseVO;
+import com.corn.order.OrderServiceAPI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,8 +29,8 @@ public class CinemaController {
                     connections = 10,cache = "lru",check = false)
     private CinemaServiceAPI cinemaServiceAPI;
 
-//    @Reference(interfaceClass = OrderServiceAPI.class,check = false)
-//    private OrderServiceAPI orderServiceAPI;
+    @Reference(interfaceClass = OrderServiceAPI.class,check = false)
+    private OrderServiceAPI orderServiceAPI;
 
     private static final String IMG_PRE = "http://img.meetingshop.cn/";
 
