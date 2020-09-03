@@ -33,7 +33,7 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
     @Autowired
     private MoocOrderTMapper moocOrderTMapper;
 
-    @Reference(interfaceClass = CinemaServiceAPI.class,check = false)
+    @Reference(interfaceClass = CinemaServiceAPI.class,check = true)
     private CinemaServiceAPI cinemaServiceAPI;
 
     @Autowired
@@ -127,6 +127,8 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
         moocOrderT.setFilmId(filmId);
         moocOrderT.setFieldId(fieldId);
         moocOrderT.setCinemaId(cinemaId);
+        moocOrderT.setCinemaName(orderQueryVO.getCinemaName());
+        moocOrderT.setFilmName(filmInfoVO.getFilmName());
 
         Integer insert = moocOrderTMapper.insert(moocOrderT);
         if(insert>0){

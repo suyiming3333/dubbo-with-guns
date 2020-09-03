@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class OrderQueryVO implements Serializable{
 
     private String cinemaId;
+    private String cinemaName;
     private String filmPrice;
 
 }

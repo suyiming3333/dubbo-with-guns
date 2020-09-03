@@ -81,13 +81,14 @@ public class OrderController {
 
         if(tokenBucket.getToken()){
             // 验证售出的票是否为真
-            boolean isTrue = orderServiceAPI.isTrueSeats(fieldId+"",soldSeats);
+//            boolean isTrue = orderServiceAPI.isTrueSeats(fieldId+"",soldSeats);
 
             // 已经销售的座位里，有没有这些座位
-            boolean isNotSold = orderServiceAPI.isNotSoldSeats(fieldId+"",soldSeats);
+//            boolean isNotSold = orderServiceAPI.isNotSoldSeats(fieldId+"",soldSeats);
 
             // 验证，上述两个内容有一个不为真，则不创建订单信息
-            if(isTrue && isNotSold){
+//            if(isTrue && isNotSold){
+            if(true){
                 // 创建订单信息,注意获取登陆人
                 String userId = CurrentUser.getCurrentUser();
                 if(userId == null || userId.trim().length() == 0){

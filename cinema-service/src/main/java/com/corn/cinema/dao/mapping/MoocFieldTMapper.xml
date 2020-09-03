@@ -65,7 +65,7 @@
           mooc_hall_dict_t hall,
           mooc_field_t f
         WHERE f.`hall_id` = hall.`UUID`
-          AND f.`UUID` = 1
+          AND f.`UUID` = #{fieldId}
     </select>
 
     <select id="getFilmInfoById" parameterType="java.lang.Integer" resultType="com.corn.cinema.vo.FilmInfoVO">

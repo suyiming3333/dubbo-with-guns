@@ -26,7 +26,7 @@ public class CinemaController {
      * connections 连接数限制(consumer provider 都可以去配置连接数限制)
      */
     @Reference(interfaceClass = CinemaServiceAPI.class,
-                    connections = 10,cache = "lru",check = false)
+                    cache = "lru",check = false)
     private CinemaServiceAPI cinemaServiceAPI;
 
     @Reference(interfaceClass = OrderServiceAPI.class,check = false)
