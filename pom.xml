@@ -17,6 +17,7 @@
         <module>film-service</module>
         <module>cinema-service</module>
         <module>order-service</module>
+        <module>alipay-service</module>
     </modules>
 
     <name>dubbo-with-guns</name>
