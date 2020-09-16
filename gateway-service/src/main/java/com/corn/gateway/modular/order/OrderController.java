@@ -7,6 +7,7 @@ import com.corn.alipay.AliPayServiceAPI;
 import com.corn.alipay.vo.AliPayInfoVO;
 import com.corn.alipay.vo.AliPayResultVO;
 import com.corn.gateway.common.CurrentUser;
+import com.corn.gateway.modular.order.service.SaveOrderService;
 import com.corn.gateway.modular.vo.ResponseVO;
 import com.corn.order.OrderServiceAPI;
 import com.corn.order.vo.OrderVO;
@@ -15,6 +16,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.stylefeng.guns.core.util.TokenBucket;
 import com.stylefeng.guns.core.util.ToolUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +33,10 @@ public class OrderController {
     private static TokenBucket tokenBucket = new TokenBucket();
     private static final String IMG_PRE="http://img.meetingshop.cn/";
 
+    @Autowired
+    private SaveOrderService saveOrderService;
+
+    //這裡的分組沒有問題
     @Reference(
             interfaceClass = OrderServiceAPI.class,
             check = false,
@@ -78,8 +84,17 @@ public class OrderController {
         })
     @RequestMapping(value = "buyTickets",method = RequestMethod.POST)
     public ResponseVO buyTickets(Integer fieldId,String soldSeats,String seatsName){
-
+        /**令牌桶限流**/
         if(tokenBucket.getToken()){
+            /**
+             * 原来下订单逻辑：
+             * 1、检验作为是和否为有效的作为
+             * 2、检验作为是否已经出售
+             * 3、两者满足才能新建订单
+             *
+             * 为了模拟分布式事务，可以调整为一下逻辑
+             * 1、
+             */
             // 验证售出的票是否为真
 //            boolean isTrue = orderServiceAPI.isTrueSeats(fieldId+"",soldSeats);
 
@@ -88,22 +103,25 @@ public class OrderController {
 
             // 验证，上述两个内容有一个不为真，则不创建订单信息
 //            if(isTrue && isNotSold){
-            if(true){
-                // 创建订单信息,注意获取登陆人
-                String userId = CurrentUser.getCurrentUser();
-                if(userId == null || userId.trim().length() == 0){
-                    return ResponseVO.serviceFail("用户未登陆");
-                }
-                OrderVO orderVO = orderServiceAPI.saveOrderInfo(fieldId,soldSeats,seatsName,Integer.parseInt(userId));
-                if(orderVO == null){
-                    log.error("购票未成功");
-                    return ResponseVO.serviceFail("购票业务异常");
-                }else{
-                    return ResponseVO.success(orderVO);
-                }
-            }else{
-                return ResponseVO.serviceFail("订单中的座位编号有问题");
-            }
+//            if(true){
+//                // 创建订单信息,注意获取登陆人
+//                String userId = CurrentUser.getCurrentUser();
+//                if(userId == null || userId.trim().length() == 0){
+//                    return ResponseVO.serviceFail("用户未登陆");
+//                }
+//                OrderVO orderVO = orderServiceAPI.saveOrderInfo(fieldId,soldSeats,seatsName,Integer.parseInt(userId));
+//                if(orderVO == null){
+//                    log.error("购票未成功");
+//                    return ResponseVO.serviceFail("购票业务异常");
+//                }else{
+//                    return ResponseVO.success(orderVO);
+//                }
+//            }else{
+//                return ResponseVO.serviceFail("订单中的座位编号有问题");
+//            }
+            //分佈式事務
+            saveOrderService.saveOrderInfo(fieldId,soldSeats,seatsName,2);
+            return ResponseVO.serviceFail("ok");
         }else{
             return ResponseVO.serviceFail("购票人数过多，请稍后再试");
         }

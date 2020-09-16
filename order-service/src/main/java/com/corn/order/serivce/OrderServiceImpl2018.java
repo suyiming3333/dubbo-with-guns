@@ -26,8 +26,8 @@ import java.util.List;
 
 
 @Slf4j
-@Component
-@Service(interfaceClass = OrderServiceAPI.class,group = "order2018")
+//@Component
+//@Service(interfaceClass = OrderServiceAPI.class,group = "order2018")
 public class OrderServiceImpl2018 implements OrderServiceAPI {
 
     @Autowired

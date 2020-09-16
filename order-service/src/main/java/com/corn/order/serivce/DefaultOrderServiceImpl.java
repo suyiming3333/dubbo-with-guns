@@ -16,6 +16,8 @@ import com.corn.order.util.FTPUtil;
 import com.corn.order.vo.OrderVO;
 import com.stylefeng.guns.core.util.UUIDUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.mengyun.tcctransaction.api.Compensable;
+import org.mengyun.tcctransaction.dubbo.context.DubboTransactionContextEditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -41,60 +43,94 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
 
     // 验证是否为真实的座位编号
     @Override
+    @Compensable(confirmMethod = "confirmIsTrueSeats", cancelMethod = "cancelIsTrueSeats", transactionContextEditor = DubboTransactionContextEditor.class)
     public boolean isTrueSeats(String fieldId, String seats) {
-        // 根据FieldId找到对应的座位位置图
-        String seatPath = moocOrderTMapper.getSeatsByFieldId(fieldId);
-
-        // 读取位置图，判断seats是否为真
-        String fileStrByAddress = ftpUtil.getFileStrByAddress(seatPath);
-
-        // 将fileStrByAddress转换为JSON对象
-        JSONObject jsonObject = JSONObject.parseObject(fileStrByAddress);
-        // seats=1,2,3   ids="1,3,4,5,6,7,88"
-        String ids = jsonObject.get("ids").toString();
-
-        // 每一次匹配上的，都给isTrue+1
-        String[] seatArrs = seats.split(",");
-        String[] idArrs = ids.split(",");
-        int isTrue = 0;
-        for(String id : idArrs){
-            for(String seat : seatArrs){
-                if(seat.equalsIgnoreCase(id)){
-                    isTrue++;
-                }
-            }
-        }
-
-        // 如果匹配上的数量与已售座位数一致，则表示全都匹配上了
-        if(seatArrs.length == isTrue){
-            return true;
+        if(seats.equals("1,2,3")){
+            throw new IllegalArgumentException();
         }else{
-            return false;
+            return true;
         }
     }
+
+    public boolean confirmIsTrueSeats(String fieldId, String seats) {
+        System.out.println("this is confirmIsTrueSeats");
+        return true;
+    }
+    public boolean cancelIsTrueSeats(String fieldId, String seats) {
+        System.out.println("this is cancelIsTrueSeats");
+        return true;
+    }
+
+    public boolean confirmIsNotSold(String fieldId, String seats) {
+        System.out.println("this is confirmIsNotSold");
+        return true;
+    }
+    public boolean cancelIsNotSold(String fieldId, String seats) {
+        System.out.println("this is cancelIsNotSold");
+        return true;
+    }
+//    public boolean isTrueSeats(String fieldId, String seats) {
+//        // 根据FieldId找到对应的座位位置图
+//        String seatPath = moocOrderTMapper.getSeatsByFieldId(fieldId);
+//
+//        // 读取位置图，判断seats是否为真
+//        String fileStrByAddress = ftpUtil.getFileStrByAddress(seatPath);
+//
+//        // 将fileStrByAddress转换为JSON对象
+//        JSONObject jsonObject = JSONObject.parseObject(fileStrByAddress);
+//        // seats=1,2,3   ids="1,3,4,5,6,7,88"
+//        String ids = jsonObject.get("ids").toString();
+//
+//        // 每一次匹配上的，都给isTrue+1
+//        String[] seatArrs = seats.split(",");
+//        String[] idArrs = ids.split(",");
+//        int isTrue = 0;
+//        for(String id : idArrs){
+//            for(String seat : seatArrs){
+//                if(seat.equalsIgnoreCase(id)){
+//                    isTrue++;
+//                }
+//            }
+//        }
+//
+//        // 如果匹配上的数量与已售座位数一致，则表示全都匹配上了
+//        if(seatArrs.length == isTrue){
+//            return true;
+//        }else{
+//            return false;
+//        }
+//    }
 
     // 判断是否为已售座位
     @Override
+    @Compensable(confirmMethod = "confirmIsNotSold", cancelMethod = "cancelIsNotSold", transactionContextEditor = DubboTransactionContextEditor.class)
     public boolean isNotSoldSeats(String fieldId, String seats) {
-
-        EntityWrapper entityWrapper = new EntityWrapper();
-        entityWrapper.eq("field_id",fieldId);
-        //获取有效order里预定的座位
-        List<MoocOrderT> list = moocOrderTMapper.selectList(entityWrapper);
-        String[] seatArrs = seats.split(",");
-        // 有任何一个编号匹配上，则直接返回失败
-        for(MoocOrderT moocOrderT : list){
-            String[] ids = moocOrderT.getSeatsIds().split(",");
-            for(String id : ids){
-                for(String seat : seatArrs){
-                    if(id.equalsIgnoreCase(seat)){
-                        return false;
-                    }
-                }
-            }
+        if(seats.equals("4,5")){
+            throw new IllegalArgumentException();
+        }else{
+            return true;
         }
-        return true;
     }
+//    public boolean isNotSoldSeats(String fieldId, String seats) {
+//
+//        EntityWrapper entityWrapper = new EntityWrapper();
+//        entityWrapper.eq("field_id",fieldId);
+//        //获取有效order里预定的座位
+//        List<MoocOrderT> list = moocOrderTMapper.selectList(entityWrapper);
+//        String[] seatArrs = seats.split(",");
+//        // 有任何一个编号匹配上，则直接返回失败
+//        for(MoocOrderT moocOrderT : list){
+//            String[] ids = moocOrderT.getSeatsIds().split(",");
+//            for(String id : ids){
+//                for(String seat : seatArrs){
+//                    if(id.equalsIgnoreCase(seat)){
+//                        return false;
+//                    }
+//                }
+//            }
+//        }
+//        return true;
+//    }
 
     // 创建新的订单
     @Override
