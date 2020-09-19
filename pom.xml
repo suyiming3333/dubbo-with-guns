@@ -18,6 +18,7 @@
         <module>cinema-service</module>
         <module>order-service</module>
         <module>alipay-service</module>
+        <module>redpacket-service</module>
     </modules>
 
     <name>dubbo-with-guns</name>
@@ -79,11 +80,11 @@
         <artifactId>guns-core</artifactId>
         <version>${guns.version}</version>
       </dependency>
-<!--      <dependency>-->
-<!--        <groupId>com.corn</groupId>-->
-<!--        <artifactId>guns-api</artifactId>-->
-<!--        <version>${guns.version}</version>-->
-<!--      </dependency>-->
+      <dependency>
+        <groupId>com.corn</groupId>
+        <artifactId>guns-api</artifactId>
+        <version>${guns.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatisplus-spring-boot-starter</artifactId>

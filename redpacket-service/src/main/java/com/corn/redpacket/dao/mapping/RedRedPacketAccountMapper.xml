@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corn.redpacket.dao.RedRedPacketAccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.corn.redpacket.model.RedRedPacketAccount">
+        <id column="RED_PACKET_ACCOUNT_ID" property="redPacketAccountId" />
+        <result column="BALANCE_AMOUNT" property="balanceAmount" />
+        <result column="USER_ID" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RED_PACKET_ACCOUNT_ID, BALANCE_AMOUNT, USER_ID
+    </sql>
+
+    <select id="getRedPacketAccountByUserId" parameterType="java.lang.String" resultType="com.corn.redpacket.model.RedRedPacketAccount">
+        SELECT
+            t.BALANCE_AMOUNT,
+            t.RED_PACKET_ACCOUNT_ID,
+            t.USER_ID
+        FROM
+            red_red_packet_account t
+        WHERE
+            t.USER_ID = #{userId}
+    </select>
+
+    <update id="descRedPacketAmount">
+        UPDATE red_red_packet_account t
+        SET t.BALANCE_AMOUNT = t.BALANCE_AMOUNT - #{amount}
+        WHERE
+            t.USER_ID = #{userId}
+    </update>
+
+</mapper>

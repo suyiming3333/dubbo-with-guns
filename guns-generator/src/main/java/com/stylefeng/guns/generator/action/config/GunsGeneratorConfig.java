@@ -25,20 +25,20 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
         dataSourceConfig.setDbType(DbType.MYSQL);
         dataSourceConfig.setDriverName("com.mysql.jdbc.Driver");
         dataSourceConfig.setUsername("root");
-        dataSourceConfig.setPassword("root");
-        dataSourceConfig.setUrl("jdbc:mysql://127.0.0.1:3306/guns?characterEncoding=utf8");
+        dataSourceConfig.setPassword("");
+        dataSourceConfig.setUrl("jdbc:mysql://127.0.0.1:3306/guns_redpacket?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8");
     }
 
     protected void strategyConfig() {
-        strategyConfig.setTablePrefix(new String[]{"sys_"});// 此处可以修改为您的表前缀
+        strategyConfig.setTablePrefix(new String[]{""});// 此处可以修改为您的表前缀
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
     }
 
     protected void packageConfig() {
         packageConfig.setParent(null);
-        packageConfig.setEntity("com.stylefeng.guns.admin.common.persistence.model");
-        packageConfig.setMapper("com.stylefeng.guns.admin.common.persistence.dao");
-        packageConfig.setXml("com.stylefeng.guns.admin.common.persistence.dao.mapping");
+        packageConfig.setEntity("com.corn.redpacket.model");
+        packageConfig.setMapper("com.corn.redpacket.dao");
+        packageConfig.setXml("com.corn.redpacket.dao.mapping");
     }
 
     protected void contextConfig() {
