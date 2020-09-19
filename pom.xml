@@ -19,6 +19,7 @@
         <module>order-service</module>
         <module>alipay-service</module>
         <module>redpacket-service</module>
+        <module>capital-service</module>
     </modules>
 
     <name>dubbo-with-guns</name>

@@ -31,7 +31,7 @@ public class CombinePayServiceImpl implements CombinePayServiceAPI {
         /**1、根据订单号获取订单信息，如果订单是草稿状态，则进行支付操作(确保幂等性)**/
         //执行主业务：如果订单是草稿状态，更新订单状态为支付中(如果订单状态不是草稿状态，则直接执行分支业务)
         OrderVO orderVO = orderServiceAPI.getOrderInfoById(orderId);
-        if(orderVO !=null && "0".equals(orderVO.getOrderStatus())){
+        if(orderVO !=null && "DRAFT".equals(orderVO.getOrderStatus())){
             //记录组合支付金额，更新订单状态为支付中
         }
 

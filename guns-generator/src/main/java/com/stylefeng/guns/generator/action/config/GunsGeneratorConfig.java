@@ -26,7 +26,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
         dataSourceConfig.setDriverName("com.mysql.jdbc.Driver");
         dataSourceConfig.setUsername("root");
         dataSourceConfig.setPassword("");
-        dataSourceConfig.setUrl("jdbc:mysql://127.0.0.1:3306/guns_redpacket?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8");
+        dataSourceConfig.setUrl("jdbc:mysql://127.0.0.1:3306/guns_capital?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8");
     }
 
     protected void strategyConfig() {
@@ -36,9 +36,9 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
 
     protected void packageConfig() {
         packageConfig.setParent(null);
-        packageConfig.setEntity("com.corn.redpacket.model");
-        packageConfig.setMapper("com.corn.redpacket.dao");
-        packageConfig.setXml("com.corn.redpacket.dao.mapping");
+        packageConfig.setEntity("com.corn.capital.model");
+        packageConfig.setMapper("com.corn.capital.dao");
+        packageConfig.setXml("com.corn.capital.dao.mapping");
     }
 
     protected void contextConfig() {
