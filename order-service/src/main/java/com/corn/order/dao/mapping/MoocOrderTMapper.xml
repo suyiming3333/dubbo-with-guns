@@ -36,6 +36,7 @@
           o.`cinema_name` AS cinemaName,
           o.`seats_name` AS seatsName,
           o.`order_price` AS orderPrice,
+          o.order_status as orderStatus,
           UNIX_TIMESTAMP(o.`order_time`) AS orderTimestamp
         FROM
           mooc_order_t o
@@ -62,5 +63,12 @@
     <select id="getSoldSeatsByFieldId" parameterType="java.lang.Integer" resultType="java.lang.String">
         SELECT GROUP_CONCAT(seats_ids) FROM mooc_order_t where field_id=#{fieldId}
     </select>
+
+    <update id="updateOrdeStatus">
+        UPDATE mooc_order_t t
+        SET t.order_status = #{status}
+        WHERE
+            t.UUID = #{orderId}
+    </update>
 
 </mapper>

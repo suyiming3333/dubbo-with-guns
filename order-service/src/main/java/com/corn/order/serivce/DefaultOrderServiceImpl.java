@@ -282,4 +282,9 @@ public class DefaultOrderServiceImpl implements OrderServiceAPI {
             return false;
         }
     }
+
+    @Override
+    public Integer updateOrderStatus(String status, String orderId) {
+        return moocOrderTMapper.updateOrdeStatus(status,orderId);
+    }
 }

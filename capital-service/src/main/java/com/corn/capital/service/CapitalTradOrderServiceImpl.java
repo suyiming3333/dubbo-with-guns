@@ -30,8 +30,7 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
 
     @Override
     @Compensable(confirmMethod = "confirmRecord", cancelMethod = "cancelRecord", transactionContextEditor = DubboTransactionContextEditor.class)
-    @Transactional
-    public String payRecord(CapitalTradeOrderDto tradeOrderDto) {
+    public void payRecord(CapitalTradeOrderDto tradeOrderDto) {
         CapTradeOrder capTradeOrder = new CapTradeOrder();
         capTradeOrder.setMerchantOrderNo(tradeOrderDto.getMerchantOrderNo());
         CapTradeOrder foundRecord = capTradeOrderMapper.selectOne(capTradeOrder);
@@ -52,10 +51,8 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
             }
 
         }
-        return "success";
     }
 
-    @Transactional
     public void confirmRecord(CapitalTradeOrderDto tradeOrderDto) {
         CapTradeOrder capTradeOrder = new CapTradeOrder();
         capTradeOrder.setMerchantOrderNo(tradeOrderDto.getMerchantOrderNo());
@@ -68,20 +65,19 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
             //更新交易记录状态
             capTradeOrderMapper.updateTradeOrderStatus(capTradeOrder.getStatus(), capTradeOrder.getMerchantOrderNo());
             //查询用户可用账号余额
-            CapCapitalAccount capCapitalAccount = capCapitalAccountMapper.getCapitalAccountByUserId(capTradeOrder.getSelfUserId() + "");
+            CapCapitalAccount capCapitalAccount = capCapitalAccountMapper.getCapitalAccountByUserId(tradeOrderDto.getSelfUserId() + "");
             //confirm阶段真正的扣红包金额
             //红包余额大于即将扣款的红包金额
-            if ((capTradeOrder.getAmount().compareTo(capCapitalAccount.getBalanceAmount()) == -1)) {
+            if ((tradeOrderDto.getAmount().compareTo(capCapitalAccount.getBalanceAmount()) == -1)) {
                 //减扣账户金额
-                capCapitalAccountMapper.descRedPacketAmount(capTradeOrder.getAmount(), capTradeOrder.getSelfUserId() + "");
+                capCapitalAccountMapper.descCapitalAmount(tradeOrderDto.getAmount(), tradeOrderDto.getSelfUserId() + "");
             } else {
                 throw new RuntimeException("账户余额不足");
             }
         }
     }
 
-    @Transactional
-    public void cancel(CapitalTradeOrderDto tradeOrderDto) {
+    public void cancelRecord(CapitalTradeOrderDto tradeOrderDto) {
         CapTradeOrder capTradeOrder = new CapTradeOrder();
         capTradeOrder.setMerchantOrderNo(tradeOrderDto.getMerchantOrderNo());
         CapTradeOrder foundRecord = capTradeOrderMapper.selectOne(capTradeOrder);

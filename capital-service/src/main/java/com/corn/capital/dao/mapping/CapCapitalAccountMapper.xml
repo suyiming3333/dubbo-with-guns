@@ -16,17 +16,17 @@
 
     <select id="getCapitalAccountByUserId" parameterType="java.lang.String" resultType="com.corn.capital.model.CapCapitalAccount">
         SELECT
-            t.BALANCE_AMOUNT,
-            t.CAPITAL_ACCOUNT_ID,
-            t.USER_ID
+            t.BALANCE_AMOUNT AS balanceAmount,
+            t.CAPITAL_ACCOUNT_ID AS capitalAccountId,
+            t.USER_ID AS userId
         FROM
             cap_capital_account t
         WHERE
             t.USER_ID = #{userId}
     </select>
 
-    <update id="descRedPacketAmount">
-        UPDATE cap_trade_order t
+    <update id="descCapitalAmount">
+        UPDATE cap_capital_account t
         SET t.BALANCE_AMOUNT = t.BALANCE_AMOUNT - #{amount}
         WHERE
             t.USER_ID = #{userId}

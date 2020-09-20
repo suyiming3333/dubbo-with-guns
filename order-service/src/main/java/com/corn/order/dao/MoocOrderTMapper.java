@@ -27,4 +27,6 @@ public interface MoocOrderTMapper extends BaseMapper<MoocOrderT> {
 
     String getSoldSeatsByFieldId(@Param("fieldId")Integer fieldId);
 
+    Integer updateOrdeStatus(@Param("status") String status,@Param("orderId") String orderId);
+
 }

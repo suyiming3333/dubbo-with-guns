@@ -37,7 +37,7 @@ import static com.corn.alipay.model.TradeStatus.SUCCESS;
 @Slf4j
 @Component
 @Service(interfaceClass = AliPayServiceAPI.class,
-        mock = "com.stylefeng.guns.api.alipay.AliPayServiceMock")
+        mock = "com.corn.alipay.AliPayServiceMock")
 public class DefaultAlipayServiceImpl implements AliPayServiceAPI {
 
     @Reference(interfaceClass = OrderServiceAPI.class,check = false,group = "order2018")

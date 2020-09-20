@@ -8,6 +8,6 @@ import com.corn.capital.vo.CapitalTradeOrderDto;
  */
 public interface CapitalTradeOrderService {
 
-    public String payRecord(CapitalTradeOrderDto tradeOrderDto);
+    void payRecord(CapitalTradeOrderDto tradeOrderDto);
 
 }

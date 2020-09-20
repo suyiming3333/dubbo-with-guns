@@ -15,6 +15,6 @@ public interface CombinePayServiceAPI {
      * @param capitalPayAmount
      * @return
      */
-    boolean combinePay(String orderId, long userId,BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount);
+    void combinePay(String orderId, long userId,BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount);
 
 }

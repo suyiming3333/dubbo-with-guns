@@ -16,9 +16,9 @@
 
     <select id="getRedPacketAccountByUserId" parameterType="java.lang.String" resultType="com.corn.redpacket.model.RedRedPacketAccount">
         SELECT
-            t.BALANCE_AMOUNT,
-            t.RED_PACKET_ACCOUNT_ID,
-            t.USER_ID
+            t.BALANCE_AMOUNT AS balanceAmount,
+            t.RED_PACKET_ACCOUNT_ID AS redPacketAccountId,
+            t.USER_ID AS userId
         FROM
             red_red_packet_account t
         WHERE

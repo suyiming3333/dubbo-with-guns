@@ -1,4 +1,4 @@
-package com.corn.alipay.service.impl;
+package com.corn.gateway.modular.order.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.corn.alipay.CombinePayServiceAPI;
@@ -13,6 +13,7 @@ import org.mengyun.tcctransaction.api.Compensable;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+
 @Component
 @Slf4j
 public class CombinePayServiceImpl implements CombinePayServiceAPI {
@@ -52,22 +53,14 @@ public class CombinePayServiceImpl implements CombinePayServiceAPI {
 
         /**2、执行分支业务，调用红包服务、余额支付进行组合支付**/
         //调用红包服务
+        redPacketTradeOrderService.payRecord(createRedTradeOrder(orderId,userId,redPacketPayAmount));
         //调用余额服务
         capitalTradeOrderService.payRecord(createCapTradeOrder(orderId,userId,redPacketPayAmount));
-
-        redPacketTradeOrderService.payRecord(createRedTradeOrder(orderId,userId,redPacketPayAmount));
-
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        throw new RuntimeException("test exception");
     }
 
     public void confirmCombinePay(String orderId,long userId, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
         OrderVO orderVO = orderServiceAPI.getOrderInfoById(orderId);
-        if(orderVO !=null && "PAYING".equals(orderVO.getOrderStatus())){
+        if(orderVO !=null && "DRAFT".equals(orderVO.getOrderStatus())){
             //记录组合支付金额，更新订单状态为支付中
             log.info("订单id:{},红包支付金额：{},账户支付金额：{},支付状态：CONFIRMED",orderId,redPacketPayAmount.toString(),capitalPayAmount.toString());
             orderServiceAPI.updateOrderStatus("CONFIRMED",orderId);
@@ -76,7 +69,7 @@ public class CombinePayServiceImpl implements CombinePayServiceAPI {
 
     public void cancelCombinePay(String orderId,long userId, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
         OrderVO orderVO = orderServiceAPI.getOrderInfoById(orderId);
-        if(orderVO !=null && "PAYING".equals(orderVO.getOrderStatus())){
+        if(orderVO !=null && "DRAFT".equals(orderVO.getOrderStatus())){
             //记录组合支付金额，更新订单状态为支付中
             log.info("订单id:{},红包支付金额：{},账户支付金额：{},支付状态：PAY_FAILED",orderId,redPacketPayAmount.toString(),capitalPayAmount.toString());
             orderServiceAPI.updateOrderStatus("PAY_FAILED",orderId);

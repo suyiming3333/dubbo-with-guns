@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.rpc.RpcContext;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.corn.alipay.AliPayServiceAPI;
+import com.corn.alipay.CombinePayServiceAPI;
 import com.corn.alipay.vo.AliPayInfoVO;
 import com.corn.alipay.vo.AliPayResultVO;
 import com.corn.gateway.common.CurrentUser;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,19 @@ public class OrderController {
 
     @Reference(interfaceClass = AliPayServiceAPI.class,check = false)
     private AliPayServiceAPI aliPayServiceAPI;
+
+    @Autowired
+    private CombinePayServiceAPI combinePayServiceAPI;
+
+    @RequestMapping(value = "test",method = RequestMethod.POST)
+    public void testCombinePay(@RequestParam("orderId") String orderId,
+                               @RequestParam("userId") long userId,
+                               @RequestParam("redPacketPayAmount") BigDecimal redPacketPayAmount,
+                               @RequestParam("capitalPayAmount") BigDecimal capitalPayAmount){
+
+        combinePayServiceAPI.combinePay(orderId, userId, redPacketPayAmount, capitalPayAmount);
+//        log.info("支付结果：{}",result);
+    }
 
     public ResponseVO error(Integer fieldId, String soldSeats, String seatsName){
         return ResponseVO.serviceFail("抱歉，下单的人太多了，请稍后重试");

@@ -18,7 +18,7 @@ public interface CapCapitalAccountMapper extends BaseMapper<CapCapitalAccount> {
 
     CapCapitalAccount getCapitalAccountByUserId(@Param("userId") String userId);
 
-    Integer descRedPacketAmount(@Param("amount") BigDecimal amount, @Param("userId") String userId);
+    Integer descCapitalAmount(@Param("amount") BigDecimal amount, @Param("userId") String userId);
 
 
 }

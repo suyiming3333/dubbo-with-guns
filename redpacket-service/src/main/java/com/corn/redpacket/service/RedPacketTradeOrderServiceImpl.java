@@ -29,8 +29,7 @@ public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderServic
 
     @Override
     @Compensable(confirmMethod = "confirmRecord", cancelMethod = "cancelRecord", transactionContextEditor = DubboTransactionContextEditor.class)
-    @Transactional
-    public String payRecord(RedPacketTradeOrderDto redPacketTradeOrderDto) {
+    public void payRecord(RedPacketTradeOrderDto redPacketTradeOrderDto) {
         RedTradeOrder redTradeOrder = new RedTradeOrder();
         redTradeOrder.setMerchantOrderNo(redPacketTradeOrderDto.getMerchantOrderNo());
         RedTradeOrder foundRecord = redTradeOrderMapper.selectOne(redTradeOrder);
@@ -59,10 +58,8 @@ public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderServic
             }
 
         }
-        return "success";
     }
 
-    @Transactional
     public void confirmRecord(RedPacketTradeOrderDto redPacketTradeOrderDto) {
         RedTradeOrder redTradeOrder = new RedTradeOrder();
         redTradeOrder.setMerchantOrderNo(redPacketTradeOrderDto.getMerchantOrderNo());
@@ -75,20 +72,19 @@ public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderServic
             //更新交易记录状态
             redTradeOrderMapper.updateTradeOrderStatus(redTradeOrder.getStatus(),redTradeOrder.getMerchantOrderNo());
             //查询用户可用红包余额
-            RedRedPacketAccount redPacketAccount = redRedPacketAccountMapper.getRedPacketAccountByUserId(redTradeOrder.getSelfUserId() + "");
+            RedRedPacketAccount redPacketAccount = redRedPacketAccountMapper.getRedPacketAccountByUserId(redPacketTradeOrderDto.getSelfUserId() + "");
             //confirm阶段真正的扣红包金额
             //红包余额大于即将扣款的红包金额
-            if((redTradeOrder.getAmount().compareTo(redPacketAccount.getBalanceAmount()) == -1)){
+            if((redPacketTradeOrderDto.getAmount().compareTo(redPacketAccount.getBalanceAmount()) == -1)){
                 //减扣红包金额
-                redRedPacketAccountMapper.descRedPacketAmount(redTradeOrder.getAmount(),redTradeOrder.getSelfUserId()+"");
+                redRedPacketAccountMapper.descRedPacketAmount(redPacketTradeOrderDto.getAmount(),redPacketTradeOrderDto.getSelfUserId()+"");
             }else {
                 throw new RuntimeException("红包余额不足");
             }
         }
     }
 
-    @Transactional
-    public void cancel(RedPacketTradeOrderDto redPacketTradeOrderDto) {
+    public void cancelRecord(RedPacketTradeOrderDto redPacketTradeOrderDto) {
         RedTradeOrder redTradeOrder = new RedTradeOrder();
         redTradeOrder.setMerchantOrderNo(redPacketTradeOrderDto.getMerchantOrderNo());
         RedTradeOrder foundRecord = redTradeOrderMapper.selectOne(redTradeOrder);
