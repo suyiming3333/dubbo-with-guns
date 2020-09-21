@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Component
 @Service(interfaceClass = RedPacketTradeOrderService.class,group = "default")
+@Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
 public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderService {
 
     @Autowired
@@ -58,6 +59,7 @@ public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderServic
             }
 
         }
+//        throw new RuntimeException("red packet");
     }
 
     public void confirmRecord(RedPacketTradeOrderDto redPacketTradeOrderDto) {

@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Component
 @Service(interfaceClass = CapitalTradeOrderService.class, group = "default")
+@Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
 public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
 
     @Autowired
@@ -51,6 +52,7 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
             }
 
         }
+        throw new RuntimeException("capital service");
     }
 
     public void confirmRecord(CapitalTradeOrderDto tradeOrderDto) {

@@ -52,17 +52,18 @@ public class CombinePayServiceImpl implements CombinePayServiceAPI {
 
         /**2、执行分支业务，调用红包服务、余额支付进行组合支付**/
         //调用红包服务
+        redPacketTradeOrderService.payRecord(createRedTradeOrder(orderId,userId,redPacketPayAmount));
+
         //调用余额服务
         capitalTradeOrderService.payRecord(createCapTradeOrder(orderId,userId,redPacketPayAmount));
 
-        redPacketTradeOrderService.payRecord(createRedTradeOrder(orderId,userId,redPacketPayAmount));
 
 //        try {
 //            Thread.sleep(10000);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        throw new RuntimeException("test exception");
+//        throw new RuntimeException("test exception");
     }
 
     public void confirmCombinePay(String orderId,long userId, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
