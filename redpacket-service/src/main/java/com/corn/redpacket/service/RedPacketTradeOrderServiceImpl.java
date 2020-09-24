@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Component
 @Service(interfaceClass = RedPacketTradeOrderService.class,group = "default")
-@Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
+//@Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
 public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderService {
 
     @Autowired
@@ -31,6 +31,8 @@ public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderServic
     @Override
     @Compensable(confirmMethod = "confirmRecord", cancelMethod = "cancelRecord", transactionContextEditor = DubboTransactionContextEditor.class)
     public void payRecord(RedPacketTradeOrderDto redPacketTradeOrderDto) {
+        System.out.println("try red called");
+
         RedTradeOrder redTradeOrder = new RedTradeOrder();
         redTradeOrder.setMerchantOrderNo(redPacketTradeOrderDto.getMerchantOrderNo());
         RedTradeOrder foundRecord = redTradeOrderMapper.selectOne(redTradeOrder);
@@ -63,6 +65,8 @@ public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderServic
     }
 
     public void confirmRecord(RedPacketTradeOrderDto redPacketTradeOrderDto) {
+        System.out.println("confirmRecord red called");
+
         RedTradeOrder redTradeOrder = new RedTradeOrder();
         redTradeOrder.setMerchantOrderNo(redPacketTradeOrderDto.getMerchantOrderNo());
         RedTradeOrder foundRecord = redTradeOrderMapper.selectOne(redTradeOrder);
@@ -87,6 +91,7 @@ public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderServic
     }
 
     public void cancelRecord(RedPacketTradeOrderDto redPacketTradeOrderDto) {
+        System.out.println("cancel red called");
         RedTradeOrder redTradeOrder = new RedTradeOrder();
         redTradeOrder.setMerchantOrderNo(redPacketTradeOrderDto.getMerchantOrderNo());
         RedTradeOrder foundRecord = redTradeOrderMapper.selectOne(redTradeOrder);

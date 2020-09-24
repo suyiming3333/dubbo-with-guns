@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication(scanBasePackages = {"com.corn.redpacket"})
 @EnableDubboConfiguration
-@EnableTransactionManagement
+//@EnableTransactionManagement
 public class RedpacketApplication {
 
     public static void main(String[] args) {

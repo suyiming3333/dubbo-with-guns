@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication(scanBasePackages = {"com.corn.capital"})
 @EnableDubboConfiguration
-@EnableTransactionManagement
+//@EnableTransactionManagement
 public class CapitalApplication {
 
     public static void main(String[] args) {

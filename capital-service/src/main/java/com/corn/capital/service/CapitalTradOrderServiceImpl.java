@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Component
 @Service(interfaceClass = CapitalTradeOrderService.class, group = "default")
-@Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
+//@Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
 public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
 
     @Autowired
@@ -32,6 +32,7 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
     @Override
     @Compensable(confirmMethod = "confirmRecord", cancelMethod = "cancelRecord", transactionContextEditor = DubboTransactionContextEditor.class)
     public void payRecord(CapitalTradeOrderDto tradeOrderDto) {
+        System.out.println("try Capital called");
         CapTradeOrder capTradeOrder = new CapTradeOrder();
         capTradeOrder.setMerchantOrderNo(tradeOrderDto.getMerchantOrderNo());
         CapTradeOrder foundRecord = capTradeOrderMapper.selectOne(capTradeOrder);
@@ -52,10 +53,11 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
             }
 
         }
-        throw new RuntimeException("capital service");
+//        throw new RuntimeException("capital service");
     }
 
     public void confirmRecord(CapitalTradeOrderDto tradeOrderDto) {
+        System.out.println("confirmRecord Capital called");
         CapTradeOrder capTradeOrder = new CapTradeOrder();
         capTradeOrder.setMerchantOrderNo(tradeOrderDto.getMerchantOrderNo());
         CapTradeOrder foundRecord = capTradeOrderMapper.selectOne(capTradeOrder);
@@ -80,6 +82,8 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
     }
 
     public void cancelRecord(CapitalTradeOrderDto tradeOrderDto) {
+        System.out.println("cancel Capital called");
+
         CapTradeOrder capTradeOrder = new CapTradeOrder();
         capTradeOrder.setMerchantOrderNo(tradeOrderDto.getMerchantOrderNo());
         CapTradeOrder foundRecord = capTradeOrderMapper.selectOne(capTradeOrder);

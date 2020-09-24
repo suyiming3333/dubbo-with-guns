@@ -10,6 +10,7 @@ import com.corn.redpacket.RedPacketTradeOrderService;
 import com.corn.redpacket.vo.RedPacketTradeOrderDto;
 import lombok.extern.slf4j.Slf4j;
 import org.mengyun.tcctransaction.api.Compensable;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -17,22 +18,13 @@ import java.math.BigDecimal;
 @Slf4j
 public class CombinePayServiceImpl implements CombinePayServiceAPI {
 
-    @Reference(
-            interfaceClass = RedPacketTradeOrderService.class,
-            check = false,
-            group = "default")
+    @Autowired
     private RedPacketTradeOrderService redPacketTradeOrderService;
 
-    @Reference(
-            interfaceClass = CapitalTradeOrderService.class,
-            check = false,
-            group = "default")
+    @Autowired
     private CapitalTradeOrderService capitalTradeOrderService;
 
-    @Reference(
-            interfaceClass = OrderServiceAPI.class,
-            check = false,
-            group = "default")
+    @Autowired
     private OrderServiceAPI orderServiceAPI;
 
 
@@ -63,7 +55,7 @@ public class CombinePayServiceImpl implements CombinePayServiceAPI {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-//        throw new RuntimeException("test exception");
+        throw new RuntimeException("test exception");
     }
 
     public void confirmCombinePay(String orderId,long userId, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
