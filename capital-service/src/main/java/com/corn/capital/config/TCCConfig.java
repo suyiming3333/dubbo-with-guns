@@ -12,8 +12,8 @@ import javax.sql.DataSource;
 @Configuration
 @ImportResource(locations = {"classpath:tcc-transaction.xml","classpath:tcc-transaction-dubbo.xml"})
 public class TCCConfig {
-//    @Bean
-//    public PlatformTransactionManager platformTransactionManager(@Qualifier("dataSource") DataSource dataSource){
-//        return new DataSourceTransactionManager(dataSource);
-//    }
+    @Bean
+    public PlatformTransactionManager platformTransactionManager(@Qualifier("dataSource") DataSource dataSource){
+        return new DataSourceTransactionManager(dataSource);
+    }
 }

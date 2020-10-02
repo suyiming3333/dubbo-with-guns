@@ -14,9 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Component
 @Slf4j
 public class CombinePayServiceImpl implements CombinePayServiceAPI {
+
+    private AtomicInteger counter = new AtomicInteger(0);
 
     @Autowired
     private RedPacketTradeOrderService redPacketTradeOrderService;
@@ -55,7 +59,7 @@ public class CombinePayServiceImpl implements CombinePayServiceAPI {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        throw new RuntimeException("test exception");
+//        throw new RuntimeException("test exception");
     }
 
     public void confirmCombinePay(String orderId,long userId, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
@@ -64,6 +68,12 @@ public class CombinePayServiceImpl implements CombinePayServiceAPI {
             //记录组合支付金额，更新订单状态为支付中
             log.info("订单id:{},红包支付金额：{},账户支付金额：{},支付状态：CONFIRMED",orderId,redPacketPayAmount.toString(),capitalPayAmount.toString());
             orderServiceAPI.updateOrderStatus("CONFIRMED",orderId);
+//            if (counter.addAndGet(1)<3){
+//                //这里如果主业务confirm出现异常，(不影响从业无的confirm)
+//                //从业务一样执行confirm，所以应该确保主业务confirm不会出错
+//                System.out.println("小于三都抛异常，用来测试job重试。目前是："+counter.get());
+//                throw new RuntimeException("test exception in confirm");
+//            }
         }
     }
 

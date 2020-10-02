@@ -17,11 +17,15 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Slf4j
 @Component
 @Service(interfaceClass = CapitalTradeOrderService.class, group = "default")
-//@Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
+@Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
 public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
+
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
 
     @Autowired
     private CapCapitalAccountMapper capCapitalAccountMapper;
@@ -53,6 +57,7 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
             }
 
         }
+        //其中一个子业务的try抛异常，所有的主从业务都会进行cancel
 //        throw new RuntimeException("capital service");
     }
 
@@ -78,6 +83,13 @@ public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
             } else {
                 throw new RuntimeException("账户余额不足");
             }
+
+//            if(atomicInteger.addAndGet(1)<3){
+//                //子业务confirm抛异常，会通过定时的任务去尝试提交confirm.
+//                //confirm抛异常用于测试定时任务重试(但是这里需要@Transactionl声明，不然单机事务也没有回滚)
+//                System.out.println("capital exception in confirm for test：current count:"+atomicInteger.get());
+//                throw new RuntimeException("capital exception in confirm for test");
+//            }
         }
     }
 
