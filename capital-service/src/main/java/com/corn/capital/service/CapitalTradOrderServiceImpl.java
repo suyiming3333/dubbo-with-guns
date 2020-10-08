@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 @Component
-@Service(interfaceClass = CapitalTradeOrderService.class, group = "default")
+@Service(interfaceClass = CapitalTradeOrderService.class, group = "default",filter = "tracing")
 @Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
 public class CapitalTradOrderServiceImpl implements CapitalTradeOrderService {
 

@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Component
-@Service(interfaceClass = RedPacketTradeOrderService.class,group = "default")
+@Service(interfaceClass = RedPacketTradeOrderService.class,group = "default",filter = "tracing")
 @Transactional(rollbackFor = Exception.class,transactionManager = "platformTransactionManager")
 public class RedPacketTradeOrderServiceImpl implements RedPacketTradeOrderService {
 

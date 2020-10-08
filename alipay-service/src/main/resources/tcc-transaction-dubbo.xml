@@ -13,9 +13,9 @@
 
 
     <!--这里必须是在xml注入dubbo的服务，否则子业务的分布式事务控制失败-->
-    <dubbo:reference id="redPacketTradeOrderService" group="default" timeout="50000" interface="com.corn.redpacket.RedPacketTradeOrderService" />
-    <dubbo:reference id="capitalTradeOrderService"  group="default" timeout="50000" interface="com.corn.capital.CapitalTradeOrderService" />
-    <dubbo:reference id="orderServiceAPI"  group="default" timeout="50000" interface="com.corn.order.OrderServiceAPI" />
+    <dubbo:reference id="redPacketTradeOrderService" group="default" timeout="50000" interface="com.corn.redpacket.RedPacketTradeOrderService" filter="tracing"/>
+    <dubbo:reference id="capitalTradeOrderService"  group="default" timeout="50000" interface="com.corn.capital.CapitalTradeOrderService" filter="tracing"/>
+    <dubbo:reference id="orderServiceAPI"  group="default" timeout="50000" interface="com.corn.order.OrderServiceAPI" filter="tracing"/>
 
 
 </beans>

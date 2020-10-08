@@ -17,7 +17,7 @@ import java.util.List;
  * executes = 10 并发控制，最多只能起10个线程
  */
 @Component
-@Service(interfaceClass = CinemaServiceAPI.class)
+@Service(interfaceClass = CinemaServiceAPI.class,filter = "tracing")
 public class DefaultCinemaServiceImpl implements CinemaServiceAPI {
 
     @Autowired

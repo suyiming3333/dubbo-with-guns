@@ -319,3 +319,10 @@ java.net.ConnectException: Connection refused: no further information
 2020-10-02 21:34:33.722  INFO 12452 --- [RMI TCP Connection(2)-192.168.1.3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
 2020-10-02 21:34:33.722  INFO 12452 --- [RMI TCP Connection(2)-192.168.1.3] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2020-10-02 21:34:33.742  INFO 12452 --- [RMI TCP Connection(2)-192.168.1.3] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 20 ms
+2020-10-02 23:49:03.520  INFO 12452 --- [ZkClient-EventThread-47-localhost:2181] org.I0Itec.zkclient.ZkEventThread        : Terminate ZkClient event thread.
+2020-10-02 23:49:03.517  INFO 12452 --- [Thread-19] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2b4c1d96: startup date [Fri Oct 02 21:34:26 CST 2020]; root of context hierarchy
+2020-10-02 23:49:03.526  INFO 12452 --- [DubboShutdownHook] org.apache.zookeeper.ZooKeeper           : Session: 0x174e9848bce0001 closed
+2020-10-02 23:49:03.526  INFO 12452 --- [DubboZkclientConnector-EventThread] org.apache.zookeeper.ClientCnxn          : EventThread shut down for session: 0x174e9848bce0001
+2020-10-02 23:49:03.555  INFO 12452 --- [Thread-19] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2020-10-02 23:49:03.558  INFO 12452 --- [Thread-19] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2020-10-02 23:49:03.573  INFO 12452 --- [Thread-19] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
