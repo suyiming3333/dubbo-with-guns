@@ -11,9 +11,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication(scanBasePackages = {"com.corn.gateway"})
 //@EnableAsync
 @EnableDubboConfiguration
-//@EnableHystrixDashboard
-//@EnableCircuitBreaker
-//@EnableHystrix
+@EnableHystrixDashboard
+@EnableCircuitBreaker
+@EnableHystrix
 public class GatewayApplication {
 
     public static void main(String[] args) {

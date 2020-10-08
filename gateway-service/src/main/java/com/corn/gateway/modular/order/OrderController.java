@@ -75,6 +75,7 @@ public class OrderController {
     }
 
     public ResponseVO error(Integer fieldId, String soldSeats, String seatsName){
+        System.out.println("hystrix call back");
         return ResponseVO.serviceFail("抱歉，下单的人太多了，请稍后重试");
     }
 
@@ -98,7 +99,8 @@ public class OrderController {
                 @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1500")
         })
     @RequestMapping(value = "buyTickets",method = RequestMethod.POST)
-    public ResponseVO buyTickets(Integer fieldId,String soldSeats,String seatsName){
+    public ResponseVO buyTickets(Integer fieldId,String soldSeats,String seatsName) throws InterruptedException {
+        Thread.sleep(4500);
         /**令牌桶限流**/
         if(tokenBucket.getToken()){
             /**

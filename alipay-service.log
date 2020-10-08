@@ -240,3 +240,17 @@
 2020-10-08 14:52:41.296  INFO 2856 --- [RMI TCP Connection(6)-192.168.43.148] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 30 ms
 2020-10-08 14:53:08.976  INFO 2856 --- [http-nio-8090-exec-1] c.c.a.s.impl.CombinePayServiceImpl       : 订单id:415sdf58ew12ds5fe1,红包支付金额：10,账户支付金额：50,支付状态：PAYING
 2020-10-08 14:53:09.544  INFO 2856 --- [pool-1-thread-1] c.c.a.s.impl.CombinePayServiceImpl       : 订单id:415sdf58ew12ds5fe1,红包支付金额：10,账户支付金额：50,支付状态：CONFIRMED
+2020-10-08 21:23:34.990  INFO 2856 --- [ZkClient-EventThread-43-localhost:2181] org.I0Itec.zkclient.ZkEventThread        : Terminate ZkClient event thread.
+2020-10-08 21:23:34.990  INFO 2856 --- [Thread-23] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@5ef6ae06: startup date [Thu Oct 08 14:52:26 CST 2020]; root of context hierarchy
+2020-10-08 21:23:34.996  INFO 2856 --- [DubboZkclientConnector-EventThread] org.apache.zookeeper.ClientCnxn          : EventThread shut down for session: 0x17506816bda000f
+2020-10-08 21:23:34.996  INFO 2856 --- [DubboShutdownHook] org.apache.zookeeper.ZooKeeper           : Session: 0x17506816bda000f closed
+2020-10-08 21:23:35.016  INFO 2856 --- [Thread-23] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2020-10-08 21:23:35.018  INFO 2856 --- [Thread-23] org.quartz.core.QuartzScheduler          : Scheduler recoverScheduler_$_NON_CLUSTERED paused.
+2020-10-08 21:23:35.021  INFO 2856 --- [Thread-23] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2020-10-08 21:23:35.022  INFO 2856 --- [Thread-23] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2020-10-08 21:23:35.024  INFO 2856 --- [Thread-23] o.s.s.quartz.SchedulerFactoryBean        : Shutting down Quartz Scheduler
+2020-10-08 21:23:35.025  INFO 2856 --- [Thread-23] org.quartz.core.QuartzScheduler          : Scheduler recoverScheduler_$_NON_CLUSTERED shutting down.
+2020-10-08 21:23:35.025  INFO 2856 --- [Thread-23] org.quartz.core.QuartzScheduler          : Scheduler recoverScheduler_$_NON_CLUSTERED paused.
+2020-10-08 21:23:35.026  INFO 2856 --- [Thread-23] org.quartz.core.QuartzScheduler          : Scheduler recoverScheduler_$_NON_CLUSTERED shutdown complete.
+2020-10-08 21:23:35.031  INFO 2856 --- [Thread-23] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2020-10-08 21:23:35.033  INFO 2856 --- [Thread-23] com.alibaba.druid.pool.DruidDataSource   : {dataSource-2} closed

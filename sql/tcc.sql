@@ -1,0 +1,242 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50714
+Source Host           : localhost:3306
+Source Database       : tcc
+
+Target Server Type    : MYSQL
+Target Server Version : 50714
+File Encoding         : 65001
+
+Date: 2020-10-08 22:26:43
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for tcc_transaction_cap
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_cap`;
+CREATE TABLE `tcc_transaction_cap` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tcc_transaction_cap
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tcc_transaction_consumer
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_consumer`;
+CREATE TABLE `tcc_transaction_consumer` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tcc_transaction_consumer
+-- ----------------------------
+INSERT INTO `tcc_transaction_consumer` VALUES ('3', 'TestProvider', 0xEAEBE4C19A1C49BAB126BD3706EE760B, 0xD3BCBAE5A384477D8A19538DD9BA4594, 0x01006F72672E6D656E6779756E2E7463637472616E73616374696F6E2E5472616E73616374696FEE0101016A6176612E7574696C2E636F6E63757272656E742E436F6E63757272656E74486173684D61F0010001026A6176612E7574696C2E446174E501CFAEEE84CC2E010201F5AEEE84CC2E01036A6176612E7574696C2E41727261794C6973F4010101046F72672E6D656E6779756E2E7463637472616E73616374696F6E2E5061727469636970616EF40101056F72672E6D656E6779756E2E7463637472616E73616374696F6E2E496E766F636174696F6E436F6E746578F40101065B4C6A6176612E6C616E672E4F626A656374BB01020301342C352CB60163616E63656C53656E644D6573736167E50102010300010107CB01636F6D2E6D6F6F632E6A69616E677A682E647562626F2E737072696E67626F6F742E636F6E73756D65722E7472616E73616374696F6E2E5472616E73616374696F6E436F6E73756D65720001050101060901636F6E6669726D53656E644D6573736167E501020D0E01086F72672E6D656E6779756E2E7463637472616E73616374696F6E2E5465726D696E61746FF201010109CB016F72672E6D656E6779756E2E7463637472616E73616374696F6E2E6170692E436F6D70656E7361626C652444656661756C745472616E73616374696F6E436F6E74657874456469746F7200010A6F72672E6D656E6779756E2E7463637472616E73616374696F6E2E6170692E5472616E73616374696F6E5869E4010111A60CD51CD0424299A9C9B2C25C2492F4020111EAEBE4C19A1C49BAB126BD3706EE760B000101010104010A010111D3BCBAE5A384477D8A19538DD9BA4594020111EAEBE4C19A1C49BAB126BD3706EE760B, '1', '1', '0', '2020-09-24 22:54:16', '2020-09-24 22:54:16', '2', '0');
+
+-- ----------------------------
+-- Table structure for tcc_transaction_main
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_main`;
+CREATE TABLE `tcc_transaction_main` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tcc_transaction_main
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tcc_transaction_ord
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_ord`;
+CREATE TABLE `tcc_transaction_ord` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tcc_transaction_ord
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tcc_transaction_order
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_order`;
+CREATE TABLE `tcc_transaction_order` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tcc_transaction_order
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tcc_transaction_pay
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_pay`;
+CREATE TABLE `tcc_transaction_pay` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tcc_transaction_pay
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tcc_transaction_provider
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_provider`;
+CREATE TABLE `tcc_transaction_provider` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tcc_transaction_provider
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tcc_transaction_red
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_red`;
+CREATE TABLE `tcc_transaction_red` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of tcc_transaction_red
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tcc_transaction_ut
+-- ----------------------------
+DROP TABLE IF EXISTS `tcc_transaction_ut`;
+CREATE TABLE `tcc_transaction_ut` (
+  `TRANSACTION_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DOMAIN` varchar(100) DEFAULT NULL,
+  `GLOBAL_TX_ID` varbinary(32) NOT NULL,
+  `BRANCH_QUALIFIER` varbinary(32) NOT NULL,
+  `CONTENT` varbinary(8000) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TRANSACTION_TYPE` int(11) DEFAULT NULL,
+  `RETRIED_COUNT` int(11) DEFAULT NULL,
+  `CREATE_TIME` datetime DEFAULT NULL,
+  `LAST_UPDATE_TIME` datetime DEFAULT NULL,
+  `VERSION` int(11) DEFAULT NULL,
+  `IS_DELETE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`TRANSACTION_ID`),
+  UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tcc_transaction_ut
+-- ----------------------------
